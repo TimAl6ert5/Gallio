@@ -1,4 +1,6 @@
-# LCR Game
+# Gallio
+
+Implementation of the dice game Left-Center-Right (LCR) as a command line game.
 
 ## Tasks
 
@@ -12,6 +14,7 @@
 
 ## Pseudocode
 
+```
 VARIABLES:
 ListOfPlayers
 PlayersChipCount
@@ -48,3 +51,4 @@ WHILE user wants to add more players OR number of players is less than 3
 CALL PlayGame
 
 DISPLAY Winner
+```

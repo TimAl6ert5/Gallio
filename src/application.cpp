@@ -21,8 +21,6 @@ int Application::run() {
 
 	while (getPlayerFromUser()) {}
 
-	// TODO make sure there's enough players
-
 	Player winner = gameLCR.PlayGame(playersList);
 
 	showResults(winner);
@@ -49,10 +47,17 @@ bool Application::getPlayerFromUser() {
 	string inputName;
 
 	cout << "Enter players name (enter * for no more players): ";
+	// TODO handle names with spaces (i.e. first last).
 	cin >> inputName;
 
 	if (inputName == "*") {
-		return false;
+		if (playersList.getNumberOfPlayers() >= 3) {
+			return false;
+		}
+		else {
+			cout << "The game requires at least 3 players." << endl;
+			return true;
+		}
 	}
 	else {
 		Player newPlayer(inputName);

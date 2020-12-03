@@ -4,12 +4,16 @@ Implementation of the dice game Left-Center-Right (LCR) as a command line game.
 
 ## Tasks
 
+Following are enhancements to be implemented in no particular order.
+
 - [ ] Represent dice face as enum, rather than assume meaning for values 1, 2, 3... everywhere
 - [ ] Implement 'game referee' that observes players chips to determine winner
 - [ ] Prevent users with the same name entering the game
-- [ ] make sure the minimum players is 3
+- [x] make sure the minimum players is 3
 - [ ] encapsulate game statistics for reporting
 - [ ] allow multiple games to be played
+- [ ] Save game state between sessions (i.e. players)
+- [ ] Handle user names with spaces (i.e. first last names)
 
 
 ## Pseudocode

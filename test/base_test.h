@@ -5,21 +5,25 @@
 * Project: Module 7-1
 */
 
-#ifndef BASE_TEST_H
-#define BASE_TEST_H
+#ifndef BASE_TEST_H_
+#define BASE_TEST_H_
 
 #include <iostream>
 #include <string>
 #include <sstream>
 
-class BaseTest
-{
+/*
+* A naive implementation of a simple testing framework to standardize test
+* output and provide resusable comparison test functions.
+*/
+class BaseTest {
 protected:
 	void LogInfo(std::string message);
 	void LogError(std::string message);
 
 	bool IsEquals(std::string note, std::string expected, std::string actual);
 	bool IsEquals(std::string note, int expected, int actual);
+
 };
 
-#endif // BASE_TEST_H
+#endif // BASE_TEST_H_

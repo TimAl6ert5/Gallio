@@ -5,18 +5,18 @@
 * Project: Module 7-1
 */
 
-#ifndef SERIALIZABLE_H
-#define SERIALIZABLE_H
+#ifndef SERIALIZABLE_H_
+#define SERIALIZABLE_H_
 
 #include <string>
 
-class Serializable
-{
+class Serializable {
 public:
 	/* Convert the object state to a string. */
-	virtual void serialize(std::string&) const = 0;
+	virtual void Serialize(std::string&) const = 0;
 	/* Restore the object state from a string. Return flag indicating success (True). */
-	virtual bool deserialize(std::string&) = 0;
+	virtual bool Deserialize(std::string&) = 0;
+
 };
 
-#endif // SERIALIZABLE_H
+#endif // SERIALIZABLE_H_

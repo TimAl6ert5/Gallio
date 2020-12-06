@@ -10,56 +10,54 @@
 #define SERIALIZE_DELIMITER '\t'
 
 Player::Player()
-	: name("Unknown"), chipCount(3), games_won(0)
+	: name_("Unknown"), chip_count_(3), games_won_(0)
 {}
 
 Player::Player(string name)
-	: name(name), chipCount(3), games_won(0)
+	: name_(name), chip_count_(3), games_won_(0)
 {}
 
-Player::~Player() {}
-
-void Player::setPlayerName(string new_name) {
-	name.assign(new_name);
+void Player::SetPlayerName(string new_name) {
+	name_.assign(new_name);
 }
 
-string Player::getPlayerName() const {
-	return name;
+string Player::GetPlayerName() const {
+	return name_;
 }
 
-void Player::setPlayerChipCount(const int chips) {
-	chipCount = chips;
+void Player::SetPlayerChipCount(const int chips) {
+	chip_count_ = chips;
 }
 
-int Player::getPlayerChipCount() const {
-	return chipCount;
+int Player::GetPlayerChipCount() const {
+	return chip_count_;
 }
 
-void Player::addOneChip() {
-	chipCount++;
+void Player::AddOneChip() {
+	chip_count_++;
 }
 
-void Player::removeOneChip() {
-	if (chipCount > 0) {
-		chipCount--;
+void Player::RemoveOneChip() {
+	if (chip_count_ > 0) {
+		chip_count_--;
 	}
 }
 
-void Player::incrementGamesWon() {
-	games_won++;
+void Player::IncrementGamesWon() {
+	games_won_++;
 }
 
-void Player::setGamesWon(const int won) {
-	games_won = won;
+void Player::SetGamesWon(const int won) {
+	games_won_ = won;
 }
 
-unsigned int Player::getGamesWon() const {
-	return games_won;
+unsigned int Player::GetGamesWon() const {
+	return games_won_;
 }
 
-void Player::serialize(std::string& store_string) const {
+void Player::Serialize(std::string& store_string) const {
 	stringstream ss;
-	ss << name << SERIALIZE_DELIMITER << games_won << SERIALIZE_DELIMITER << chipCount;
+	ss << name_ << SERIALIZE_DELIMITER << games_won_ << SERIALIZE_DELIMITER << chip_count_;
 	store_string += ss.str();
 }
 
@@ -80,17 +78,17 @@ std::vector<string> splitTabDelimited(const std::string& tab_string) {
 	return parts;
 }
 
-bool Player::deserialize(std::string& store_string) {
+bool Player::Deserialize(std::string& store_string) {
 	std::vector<string> parts = splitTabDelimited(store_string);
 
 	if (parts.size() != 3) {
 		return false;
 	}
 
-	name = parts[0];
+	name_ = parts[0];
 	try {
-		games_won = atoi(parts[1].c_str());
-		chipCount = atoi(parts[2].c_str());
+		games_won_ = atoi(parts[1].c_str());
+		chip_count_ = atoi(parts[2].c_str());
 		return true;
 	}
 	catch (...) {

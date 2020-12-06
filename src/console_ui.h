@@ -5,8 +5,8 @@
 * Project: Module 7-1
 */
 
-#ifndef CONSOLE_UI_H
-#define CONSOLE_UI_H
+#ifndef CONSOLE_UI_H_
+#define CONSOLE_UI_H_
 
 #include <iostream>
 #include <string>
@@ -19,14 +19,12 @@
 
 class ConsoleUI {
 public:
-	ConsoleUI();
-	~ConsoleUI();
-
 	void Clear() const;
 	void ShowMessageFragment(const std::string& msg) const;
 	void ShowMessageLine(const std::string& msg) const;
 
 	bool ReadUserInteger(int& user_int, bool (*ValidValue)(int)) const;
+
 };
 
-#endif // CONSOLE_UI_H
+#endif // CONSOLE_UI_H_

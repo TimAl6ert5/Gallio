@@ -5,8 +5,8 @@
 * Project: Module 7-1
 */
 
-#ifndef _PLAYER_LIST_H
-#define _PLAYER_LIST_H
+#ifndef PLAYER_LIST_H_
+#define PLAYER_LIST_H_
 
 #include <vector>
 #include <string>
@@ -22,32 +22,29 @@ using PlayersVector = vector<Player>;
 * 
 * Assumes players are in a circle taking one turn at a time in sequence.
 */
-class PlayersList : public Serializable
-{
+class PlayersList : public Serializable {
 public:
 	PlayersList();
-	~PlayersList();
 
-	void addPlayer(Player player);
-	Player& getCurrentPlayer();
+	void AddPlayer(Player player);
+	Player& GetCurrentPlayer();
 
-	void nextPlayer();
-	unsigned int getNumberOfPlayers() const;
+	void NextPlayer();
+	unsigned int GetNumberOfPlayers() const;
 
-	Player& getPlayerToLeft();
-	Player& getPlayerToRight();
+	Player& GetPlayerToLeft();
+	Player& GetPlayerToRight();
 
 	unsigned int CountPlayersWithChips() const;
-	Player& getPlayerWithChips();
+	Player& GetPlayerWithChips();
 
-	void serialize(std::string& store_string) const;
-	bool deserialize(std::string& store_string);
+	void Serialize(std::string& store_string) const;
+	bool Deserialize(std::string& store_string);
 
 private:
-
-	PlayersVector players;
-	unsigned int currentPlayerIndex = 0;
+	PlayersVector players_;
+	unsigned int current_player_index_ = 0;
 
 };
 
-#endif // _PLAYER_LIST_H
+#endif // PLAYER_LIST_H_

@@ -5,8 +5,8 @@
 * Project: Module 7-1
 */
 
-#ifndef GAME_LCR_UI_H
-#define GAME_LCR_UI_H
+#ifndef GAME_LCR_UI_H_
+#define GAME_LCR_UI_H_
 
 #include <algorithm>
 #include <iostream>
@@ -24,4 +24,4 @@ public:
 	void ShowChipCenter(Player& currentPlayer, int center_chip_count, int chip_count);
 };
 
-#endif // GAME_LCR_UI_H
+#endif // GAME_LCR_UI_H_

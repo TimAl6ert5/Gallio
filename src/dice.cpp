@@ -8,16 +8,14 @@
 #include "dice.h"
 
 Dice::Dice() {
-	this->roll();
+	this->Roll();
 }
 
-Dice::~Dice() {}
-
-unsigned int Dice::roll() {
-	currentRoll = (rand() % NUMBER_OF_SIDES) + 1;
-	return currentRoll;
+unsigned int Dice::Roll() {
+	current_roll_ = (rand() % NUMBER_OF_SIDES) + 1;
+	return current_roll_;
 }
 
-unsigned int Dice::getValue() const {
-	return currentRoll;
+unsigned int Dice::GetValue() const {
+	return current_roll_;
 }

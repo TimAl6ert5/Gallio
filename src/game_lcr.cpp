@@ -8,85 +8,83 @@
 #include "game_lcr.h"
 
 GameLCR::GameLCR()
-	: centerChips(0), turns(0)
+	: center_chips_(0), turns_(0)
 {}
 
-GameLCR::~GameLCR() {}
-
-string GameLCR::getTitle() const {
-	return title;
+string GameLCR::GetTitle() const {
+	return title_;
 }
 
-string GameLCR::getRules() {
-	if (rules.size() < 1) {
+string GameLCR::GetRules() {
+	if (rules_.size() < 1) {
 		std::ifstream ifs("rules_lcr.txt");
-		rules.assign((std::istreambuf_iterator<char>(ifs)),
+		rules_.assign((std::istreambuf_iterator<char>(ifs)),
 			(std::istreambuf_iterator<char>()));
 	}
-	return rules;
+	return rules_;
 }
 
-const string GameLCR::title{ "Left-Center-Right (LCR)" };
+const string GameLCR::title_{ "Left-Center-Right (LCR)" };
 
 Player& GameLCR::PlayGame(PlayersList& playersList) {
-	game_ui.ShowGameStart(playersList);
+	game_ui_.ShowGameStart(playersList);
 
 	while (playersList.CountPlayersWithChips() > 1) {
-		++turns;
-		game_ui.ShowGameRound(turns, ((turns - 1) / playersList.getNumberOfPlayers()) + 1);
+		++turns_;
+		game_ui_.ShowGameRound(turns_, ((turns_ - 1) / playersList.GetNumberOfPlayers()) + 1);
 
 		TakeTurn(playersList);
 
-		playersList.nextPlayer();
+		playersList.NextPlayer();
 	}
 
 	// Return the last player that still has chips
-	return playersList.getPlayerWithChips();
+	return playersList.GetPlayerWithChips();
 }
 
 void GameLCR::TakeTurn(PlayersList& playersList) {
 
-	Player& currentPlayer = playersList.getCurrentPlayer();
-	Player& leftPlayer = playersList.getPlayerToLeft();
-	Player& rightPlayer = playersList.getPlayerToRight();
-	int currentChipCount = currentPlayer.getPlayerChipCount();
+	Player& currentPlayer = playersList.GetCurrentPlayer();
+	Player& leftPlayer = playersList.GetPlayerToLeft();
+	Player& rightPlayer = playersList.GetPlayerToRight();
+	int currentChipCount = currentPlayer.GetPlayerChipCount();
 
-	game_dice.rollDice(currentPlayer.getPlayerChipCount());
-	int countL = game_dice.CountL();
-	int countR = game_dice.CountR();
-	int countC = game_dice.CountC();
+	game_dice_.RollDice(currentPlayer.GetPlayerChipCount());
+	int countL = game_dice_.CountL();
+	int countR = game_dice_.CountR();
+	int countC = game_dice_.CountC();
 
 	// Check that player can take a turn
 	if (currentChipCount > 0) {
-		game_ui.ShowCurrentPlayerTurn(currentPlayer, countL, countR, countC, game_dice.CountStar());
+		game_ui_.ShowCurrentPlayerTurn(currentPlayer, countL, countR, countC, game_dice_.CountStar());
 
 		if (countL > 0) {
 			for (int i = 0; i < countL; i++) {
-				currentPlayer.removeOneChip();
-				leftPlayer.addOneChip();
+				currentPlayer.RemoveOneChip();
+				leftPlayer.AddOneChip();
 			}
-			game_ui.ShowChipPass(currentPlayer, leftPlayer, true, countL);
+			game_ui_.ShowChipPass(currentPlayer, leftPlayer, true, countL);
 		}
 
 		if (countR > 0) {
 			for (int i = 0; i < countR; i++) {
-				currentPlayer.removeOneChip();
-				rightPlayer.addOneChip();
+				currentPlayer.RemoveOneChip();
+				rightPlayer.AddOneChip();
 			}
-			game_ui.ShowChipPass(currentPlayer, rightPlayer, false, countR);
+			game_ui_.ShowChipPass(currentPlayer, rightPlayer, false, countR);
 		}
 
 		if (countC > 0) {
 			for (int i = 0; i < countC; i++) {
-				currentPlayer.removeOneChip();
-				centerChips++;
+				currentPlayer.RemoveOneChip();
+				center_chips_++;
 			}
-			game_ui.ShowChipCenter(currentPlayer, centerChips, countC);
+			game_ui_.ShowChipCenter(currentPlayer, center_chips_, countC);
 			// TODO show updated player chip count
 		}
 	}
 	else {
 		// Player has no chips and can't take a turn
-		game_ui.ShowCurrentPlayerTurn(currentPlayer);
+		game_ui_.ShowCurrentPlayerTurn(currentPlayer);
 	}
 }

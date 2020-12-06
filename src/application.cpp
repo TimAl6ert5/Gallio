@@ -7,10 +7,7 @@
 
 #include "application.h"
 
-Application::Application() {}
-Application::~Application() {}
-
-int Application::run() {
+int Application::Run() {
 	stringstream ss;
 
 	// Init the mighty randomizer
@@ -21,8 +18,8 @@ int Application::run() {
 
 	while (getPlayerFromUser()) {}
 
-	Player& winner = gameLCR.PlayGame(playersList);
-	winner.incrementGamesWon();
+	Player& winner = game_lcr_.PlayGame(players_list_);
+	winner.IncrementGamesWon();
 
 	showResults(winner);
 	savePlayersList();
@@ -33,15 +30,15 @@ int Application::run() {
 void Application::showWelcome() {
 	stringstream ss;
 
-	ss << "Hello! Welcome to " << gameLCR.getTitle() << "\n";
-	console_ui.ShowMessageLine(ss.str());
+	ss << "Hello! Welcome to " << game_lcr_.GetTitle() << "\n";
+	console_ui_.ShowMessageLine(ss.str());
 }
 
 void Application::showRules() {
 	stringstream ss;
 
-	ss << "\n\nGame Rules:\n" << gameLCR.getRules() << "\n";
-	console_ui.ShowMessageLine(ss.str());
+	ss << "\n\nGame Rules:\n" << game_lcr_.GetRules() << "\n";
+	console_ui_.ShowMessageLine(ss.str());
 }
 
 bool Application::getPlayerFromUser() {
@@ -53,7 +50,7 @@ bool Application::getPlayerFromUser() {
 	cin >> inputName;
 
 	if (inputName == "*") {
-		if (playersList.getNumberOfPlayers() >= 3) {
+		if (players_list_.GetNumberOfPlayers() >= 3) {
 			return false;
 		}
 		else {
@@ -63,7 +60,7 @@ bool Application::getPlayerFromUser() {
 	}
 	else {
 		Player newPlayer(inputName);
-		playersList.addPlayer(newPlayer);
+		players_list_.AddPlayer(newPlayer);
 		return true;
 	}
 }
@@ -71,9 +68,9 @@ bool Application::getPlayerFromUser() {
 void Application::showResults(const Player winner) {
 	stringstream ss;
 
-	ss << "The Winner is: " << winner.getPlayerName()
+	ss << "The Winner is: " << winner.GetPlayerName()
 		<< "\nCongratulations!";
-	console_ui.ShowMessageLine(ss.str());
+	console_ui_.ShowMessageLine(ss.str());
 }
 
 void Application::savePlayersList() const {
@@ -86,7 +83,7 @@ void Application::savePlayersList() const {
 	}
 
 	// Write the file
-	playersList.serialize(save_buffer);
+	players_list_.Serialize(save_buffer);
 	save_file << save_buffer;
 
 	// Close the file

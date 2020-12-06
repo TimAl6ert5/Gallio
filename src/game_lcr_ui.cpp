@@ -12,7 +12,7 @@
 #define plural_chip(c) ( c == 1 ? "chip" : "chips" )
 
 void GameLcrUi::ShowGameStart(PlayersList& playersList) {
-	int nmbrPlayers = playersList.getNumberOfPlayers();
+	int nmbrPlayers = playersList.GetNumberOfPlayers();
 
 	cout << endl << "Starting LCR game with " << nmbrPlayers << " players." << endl;
 	cout << "Each player has 3 chips.  The game is set.  Ready? Go!" << endl;
@@ -23,12 +23,12 @@ void GameLcrUi::ShowGameRound(int turn, int round) {
 }
 
 void GameLcrUi::ShowCurrentPlayerTurn(Player& currentPlayer, int countL, int countR, int countC, int countS) {
-	int showChipCount = min(currentPlayer.getPlayerChipCount(), 3);
+	int showChipCount = min(currentPlayer.GetPlayerChipCount(), 3);
 
-	cout << "Player " << currentPlayer.getPlayerName() << " has " << currentPlayer.getPlayerChipCount()
-		<< " " << plural_chip(currentPlayer.getPlayerChipCount()) << "." << endl;
+	cout << "Player " << currentPlayer.GetPlayerName() << " has " << currentPlayer.GetPlayerChipCount()
+		<< " " << plural_chip(currentPlayer.GetPlayerChipCount()) << "." << endl;
 
-	cout << "Player " << currentPlayer.getPlayerName() << " rolls ";
+	cout << "Player " << currentPlayer.GetPlayerName() << " rolls ";
 	
 	if (countL > 0) {
 		cout << countL << "L ";
@@ -46,21 +46,21 @@ void GameLcrUi::ShowCurrentPlayerTurn(Player& currentPlayer, int countL, int cou
 }
 
 void GameLcrUi::ShowCurrentPlayerTurn(Player& currentPlayer) {
-	cout << "Player " << currentPlayer.getPlayerName() << " has no chips and does not get a turn this round." << endl;
+	cout << "Player " << currentPlayer.GetPlayerName() << " has no chips and does not get a turn this round." << endl;
 }
 
 void GameLcrUi::ShowChipPass(Player& from, Player& to, bool left, int chip_count) {
 	// show action
-	cout << "Player " << from.getPlayerName() << " passes " << chip_count << " " << plural_chip(chip_count) << " "
-		<< (left ? "left" : "right") << " to player " << to.getPlayerName() << ".";
+	cout << "Player " << from.GetPlayerName() << " passes " << chip_count << " " << plural_chip(chip_count) << " "
+		<< (left ? "left" : "right") << " to player " << to.GetPlayerName() << ".";
 	// show result
-	cout << " Player " << from.getPlayerName() << " now has " << from.getPlayerChipCount() << " and "
-		<< "player " << to.getPlayerName() << " now has " << to.getPlayerChipCount() << "." << endl;
+	cout << " Player " << from.GetPlayerName() << " now has " << from.GetPlayerChipCount() << " and "
+		<< "player " << to.GetPlayerName() << " now has " << to.GetPlayerChipCount() << "." << endl;
 }
 
 void GameLcrUi::ShowChipCenter(Player& currentPlayer, int center_chip_count, int chip_count) {
-	cout << "Player " << currentPlayer.getPlayerName() << " moves " << chip_count
-		<< " " << plural_chip(chip_count) << " to the center. " << currentPlayer.getPlayerName() << " now has " << currentPlayer.getPlayerChipCount()
-		<< " " << plural_chip(currentPlayer.getPlayerChipCount()) << " and there " << (center_chip_count > 1 ? "are" : "is") << " "
+	cout << "Player " << currentPlayer.GetPlayerName() << " moves " << chip_count
+		<< " " << plural_chip(chip_count) << " to the center. " << currentPlayer.GetPlayerName() << " now has " << currentPlayer.GetPlayerChipCount()
+		<< " " << plural_chip(currentPlayer.GetPlayerChipCount()) << " and there " << (center_chip_count > 1 ? "are" : "is") << " "
 		<< center_chip_count << " " << plural_chip(center_chip_count) << " out of play." << endl;
 }

@@ -8,82 +8,80 @@
 #include "players_list.h"
 
 PlayersList::PlayersList() 
-	: players({})
+	: players_({})
 {}
 
-PlayersList::~PlayersList() {}
-
-void PlayersList::addPlayer(Player player) {
-	players.push_back(player);
+void PlayersList::AddPlayer(Player player) {
+	players_.push_back(player);
 }
 
-Player& PlayersList::getCurrentPlayer() {
-	return players.at(currentPlayerIndex);
+Player& PlayersList::GetCurrentPlayer() {
+	return players_.at(current_player_index_);
 }
 
-void PlayersList::nextPlayer() {
-	currentPlayerIndex = (currentPlayerIndex + 1) % players.size();
+void PlayersList::NextPlayer() {
+	current_player_index_ = (current_player_index_ + 1) % players_.size();
 }
 
-unsigned int PlayersList::getNumberOfPlayers() const {
-	return players.size();
+unsigned int PlayersList::GetNumberOfPlayers() const {
+	return players_.size();
 }
 
-Player& PlayersList::getPlayerToRight() {
-	if (currentPlayerIndex == 0) {
-		return players[players.size() - 1];
+Player& PlayersList::GetPlayerToRight() {
+	if (current_player_index_ == 0) {
+		return players_[players_.size() - 1];
 	}
 	else {
-		return players[currentPlayerIndex - 1];
+		return players_[current_player_index_ - 1];
 	}
 }
 
-Player& PlayersList::getPlayerToLeft() {
-	if (currentPlayerIndex == (players.size() - 1)) {
-		return players[0];
+Player& PlayersList::GetPlayerToLeft() {
+	if (current_player_index_ == (players_.size() - 1)) {
+		return players_[0];
 	}
 	else {
-		return players[currentPlayerIndex + 1];
+		return players_[current_player_index_ + 1];
 	}
 }
 
 unsigned int PlayersList::CountPlayersWithChips() const {
 	int count = 0;
-	for (auto& player : players) {
-		if (player.getPlayerChipCount() > 0) {
+	for (auto& player : players_) {
+		if (player.GetPlayerChipCount() > 0) {
 			count++;
 		}
 	}
 	return count;
 }
 
-Player& PlayersList::getPlayerWithChips() {
-	for (auto& player : players) {
-		if (player.getPlayerChipCount() > 0) {
+Player& PlayersList::GetPlayerWithChips() {
+	for (auto& player : players_) {
+		if (player.GetPlayerChipCount() > 0) {
 			return player;
 		}
 	}
 	throw -1;
 }
 
-void PlayersList::serialize(std::string& store_string) const {
+void PlayersList::Serialize(std::string& store_string) const {
 	string temp;
-	for (Player p : players) {
-		p.serialize(temp);
+	for (Player p : players_) {
+		p.Serialize(temp);
 		temp += "\n";
 	}
 	store_string += temp;
 }
 
-bool PlayersList::deserialize(std::string& store_string) {
+bool PlayersList::Deserialize(std::string& store_string) {
 	stringstream ss;
 	ss.str(store_string);
 	string buffer;
 
 	while (getline(ss, buffer, '\n')) {
 		Player player("");
-		player.deserialize(buffer);
-		addPlayer(player);
+		player.Deserialize(buffer);
+		AddPlayer(player);
 	}
 
 	return false;

@@ -5,8 +5,8 @@
 * Project: Module 7-1
 */
 
-#ifndef _APPLICATION_H
-#define _APPLICATION_H
+#ifndef APPLICATION_H_
+#define APPLICATION_H_
 
 #include <iostream>
 #include <fstream>
@@ -20,19 +20,14 @@
 
 using namespace std;
 
+class Application {
+ public:
+	int Run();
 
-class Application
-{
-public:
-	Application();
-	~Application();
-
-	int run();
-
-private:
-	ConsoleUI console_ui;
-	GameLCR gameLCR;
-	PlayersList playersList;
+ private:
+	ConsoleUI console_ui_;
+	GameLCR game_lcr_;
+	PlayersList players_list_;
 
 	void showWelcome();
 	void showRules();
@@ -41,6 +36,7 @@ private:
 	void savePlayersList() const;
 
 	static const string kSavePlayersFilename;
+
 };
 
-#endif // _APPLICATION_H
+#endif // APPLICATION_H_

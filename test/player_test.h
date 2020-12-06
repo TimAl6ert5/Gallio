@@ -5,14 +5,13 @@
 * Project: Module 7-1
 */
 
-#ifndef PLAYER_TEST_H
-#define PLAYER_TEST_H
+#ifndef PLAYER_TEST_H_
+#define PLAYER_TEST_H_
 
 #include "base_test.h"
 #include "../src/player.h"
 
-class PlayerTest : public BaseTest
-{
+class PlayerTest : public BaseTest {
 public:
 	int Run();
 
@@ -22,4 +21,4 @@ private:
 
 };
 
-#endif // PLAYER_TEST_H
+#endif // PLAYER_TEST_H_

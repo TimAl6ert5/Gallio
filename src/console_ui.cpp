@@ -7,9 +7,6 @@
 
 #include "console_ui.h"
 
-ConsoleUI::ConsoleUI() {}
-ConsoleUI::~ConsoleUI() {}
-
 void ConsoleUI::Clear() const {
 	system(CLEAR);
 }

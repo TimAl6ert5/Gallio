@@ -13,8 +13,7 @@
 #include "src\application.h"
 #endif // TEST_SUITE
 
-int main()
-{
+int main() {
 	std::set_terminate([]() { std::cout << "Unhandled exception" << std::endl; std::abort(); });
 
 #ifdef TEST_SUITE
@@ -23,7 +22,7 @@ int main()
 
 #else
 	Application app;
-	return app.run();
+	return app.Run();
 
 #endif // TEST_SUITE
 }

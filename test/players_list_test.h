@@ -5,18 +5,18 @@
 * Project: Module 7-1
 */
 
-#ifndef PLAYERS_LIST_TEST_H
-#define PLAYERS_LIST_TEST_H
+#ifndef PLAYERS_LIST_TEST_H_
+#define PLAYERS_LIST_TEST_H_
 
 #include "base_test.h"
 #include "..\src\players_list.h"
 #include "..\src\player.h"
 
-class PlayersListTest : public BaseTest
-{
+class PlayersListTest : public BaseTest {
 public:
 	int Run();
 
+private:
 	int TestGetPlayerToLeft();
 	int TestGetPlayerToRight();
 	int TestCountPlayersWithChips();
@@ -26,4 +26,4 @@ public:
 
 };
 
-#endif // PLAYERS_LIST_TEST_H
+#endif // PLAYERS_LIST_TEST_H_

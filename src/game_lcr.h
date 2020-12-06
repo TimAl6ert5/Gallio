@@ -5,8 +5,8 @@
 * Project: Module 7-1
 */
 
-#ifndef _GAME_LCR_H
-#define _GAME_LCR_H
+#ifndef GAME_LCR_H_
+#define GAME_LCR_H_
 
 #include <iostream>
 #include <fstream>
@@ -18,27 +18,25 @@
 
 using namespace std;
 
-class GameLCR
-{
+class GameLCR {
 public:
 	GameLCR();
-	~GameLCR();
 
-	string getTitle() const;
-	string getRules();
+	string GetTitle() const;
+	string GetRules();
 	Player& PlayGame(PlayersList& playersList);
 
-	static const int minPlayers = 3; // must have 3, no upper bound
+	static const int kMinPlayers = 3; // must have 3, no upper bound
 
 private:
-	static const string title;
-	string rules;
-	DiceLCR game_dice;
-	int centerChips, turns;
-	GameLcrUi game_ui;
+	static const string title_;
+	string rules_;
+	DiceLCR game_dice_;
+	int center_chips_, turns_;
+	GameLcrUi game_ui_;
 
 	void TakeTurn(PlayersList& playersList);
 
 };
 
-#endif // _GAME_LCR_H
+#endif // GAME_LCR_H_

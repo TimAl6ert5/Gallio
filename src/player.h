@@ -5,8 +5,8 @@
 * Project: Module 7-1
 */
 
-#ifndef _PLAYER_H
-#define _PLAYER_H
+#ifndef PLAYER_H_
+#define PLAYER_H_
 
 #include <string>
 #include <sstream>
@@ -15,33 +15,31 @@
 
 using namespace std;
 
-class Player : public Serializable
-{
+class Player : public Serializable {
 public:
 	Player();
 	Player(string name);
-	~Player();
 
-	void setPlayerName(string name);
-	string getPlayerName() const;
-	void setPlayerChipCount(const int chips);
-	int getPlayerChipCount() const;
+	void SetPlayerName(string name);
+	string GetPlayerName() const;
+	void SetPlayerChipCount(const int chips);
+	int GetPlayerChipCount() const;
 
-	void addOneChip();
-	void removeOneChip();
+	void AddOneChip();
+	void RemoveOneChip();
 
-	void incrementGamesWon();
-	void setGamesWon(const int won);
-	unsigned int getGamesWon() const;
+	void IncrementGamesWon();
+	void SetGamesWon(const int won);
+	unsigned int GetGamesWon() const;
 
-	void serialize(std::string& store_string) const;
-	bool deserialize(std::string& store_string);
+	void Serialize(std::string& store_string) const;
+	bool Deserialize(std::string& store_string);
 
 private:
-	string name;
-	int chipCount;
-	unsigned int games_won;
+	string name_;
+	int chip_count_;
+	unsigned int games_won_;
 
 };
 
-#endif // _PLAYER_H
+#endif // PLAYER_H_

@@ -5,8 +5,8 @@
 * Project: Module 7-1
 */
 
-#ifndef _DICE_H
-#define _DICE_H
+#ifndef DICE_H_
+#define DICE_H_
 
 #define NUMBER_OF_SIDES 6
 
@@ -17,18 +17,16 @@ using namespace std;
 /*
 * Represents a 6 sided dice with values 1...6
 */
-class Dice
-{
+class Dice {
 public:
 	Dice();
-	~Dice();
 
-	unsigned int roll();
-	unsigned int getValue() const;
+	unsigned int Roll();
+	unsigned int GetValue() const;
 
 private:
-	unsigned int currentRoll;
+	unsigned int current_roll_;
 
 };
 
-#endif // _DICE_H
+#endif // DICE_H_

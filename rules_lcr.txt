@@ -1,0 +1,19 @@
+Left Center Right (LCR) is a turn based, dice game that requires three or more
+players. Players should determine the order in which they will take turns. At 
+the start of the game, each player is given three chips of equal value.
+
+On a players turn, the player will roll up to three dice. If the player has 
+less than three chips, the player can only roll the number of dice equal to the
+number of chips they have. Note, a player is still in the game if they have no
+chips.
+
+The dice are six sided, with three sides marked L, C, R, and the rest marked 
+with a dot. After the player rolls the dice, they will take actions based on 
+the dice as follows:
+- For each L, the player must pass one chip to the player sitting to the left.
+- For each R, the player must pass one chip to the player sitting to the right.
+- For each C, the player must place one chip into the center pot and those
+  chips are now out of play.
+- Dots are neutral and require no action to be taken for that die.
+
+The winner is the last player with chips.

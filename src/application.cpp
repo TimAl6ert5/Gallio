@@ -1,7 +1,7 @@
 /*
 * Name: Tim Alberts (timothy.alberts@snhu.edu)
 * Course: IT-312-X2914 Software Devel w/C++.Net 20EW2
-* Date: 2020-11-08
+* Date: 2020-12-13
 * Project: Module 7-1
 */
 
@@ -21,9 +21,11 @@ int Application::run() {
 
 	while (getPlayerFromUser()) {}
 
-	Player winner = gameLCR.PlayGame(playersList);
+	Player& winner = gameLCR.PlayGame(playersList);
+	winner.incrementGamesWon();
 
 	showResults(winner);
+	savePlayersList();
 
 	return 0;
 }
@@ -73,3 +75,22 @@ void Application::showResults(const Player winner) {
 		<< "\nCongratulations!";
 	console_ui.ShowMessageLine(ss.str());
 }
+
+void Application::savePlayersList() const {
+	string save_buffer;
+
+	ofstream save_file(kSavePlayersFilename, ios::out | ios::trunc);
+	if (!save_file) {
+		// create the file
+		cout << "[ERROR] File write failed." << endl;
+	}
+
+	// Write the file
+	playersList.serialize(save_buffer);
+	save_file << save_buffer;
+
+	// Close the file
+	save_file.close();
+}
+
+const string Application::kSavePlayersFilename = "save_players.txt";

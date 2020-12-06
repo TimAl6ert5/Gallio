@@ -1,7 +1,7 @@
 /*
 * Name: Tim Alberts (timothy.alberts@snhu.edu)
 * Course: IT-312-X2914 Software Devel w/C++.Net 20EW2
-* Date: 2020-11-08
+* Date: 2020-12-13
 * Project: Module 7-1
 */
 
@@ -64,4 +64,27 @@ Player& PlayersList::getPlayerWithChips() {
 		}
 	}
 	throw -1;
+}
+
+void PlayersList::serialize(std::string& store_string) const {
+	string temp;
+	for (Player p : players) {
+		p.serialize(temp);
+		temp += "\n";
+	}
+	store_string += temp;
+}
+
+bool PlayersList::deserialize(std::string& store_string) {
+	stringstream ss;
+	ss.str(store_string);
+	string buffer;
+
+	while (getline(ss, buffer, '\n')) {
+		Player player("");
+		player.deserialize(buffer);
+		addPlayer(player);
+	}
+
+	return false;
 }

@@ -1,7 +1,7 @@
 /*
 * Name: Tim Alberts (timothy.alberts@snhu.edu)
 * Course: IT-312-X2914 Software Devel w/C++.Net 20EW2
-* Date: 2020-11-08
+* Date: 2020-12-13
 * Project: Module 7-1
 */
 
@@ -14,6 +14,8 @@ int PlayersListTest::Run() {
 	test_result += TestGetPlayerToRight();
 	test_result += TestCountPlayersWithChips();
 	test_result += TestGetPlayerWithChips();
+	test_result += TestPlayerListSerialize();
+	test_result += TestPlayerListDeserialize();
 
 	return test_result;
 }
@@ -163,6 +165,71 @@ int PlayersListTest::TestGetPlayerWithChips() {
 
 	if (!IsEquals("", p2.getPlayerName(), player_list.getPlayerWithChips().getPlayerName())) {
 		return -1;
+	}
+
+	return 0;
+}
+
+int PlayersListTest::TestPlayerListSerialize() {
+	PlayersList player_list;
+
+	Player p1("John Doe");
+	p1.setGamesWon(42);
+	p1.setPlayerChipCount(13);
+
+	Player p2("Jane Doe");
+	p2.setGamesWon(24);
+	p2.setPlayerChipCount(31);
+
+	player_list.addPlayer(p1);
+	player_list.addPlayer(p2);
+
+	string expected = "John Doe\t42\t13\nJane Doe\t24\t31\n";
+	string actual;
+	player_list.serialize(actual);
+
+	if (!IsEquals("TestPlayerSerialize", expected, actual)) {
+		return 1;
+	}
+
+	return 0;
+}
+
+int PlayersListTest::TestPlayerListDeserialize() {
+	PlayersList player_list;
+
+	string players_source = "John Doe\t42\t13\nJane Doe\t24\t31\n";
+
+	player_list.deserialize(players_source);
+
+	if (!IsEquals("TestPlayerListDeserialize", 2, player_list.getNumberOfPlayers())) {
+		return 1;
+	}
+
+	Player p1 = player_list.getCurrentPlayer();
+
+	if (!IsEquals("TestPlayerListDeserialize", "John Doe", p1.getPlayerName())) {
+		return 1;
+	}
+	if (!IsEquals("TestPlayerListDeserialize", 42, p1.getGamesWon())) {
+		return 1;
+	}
+	if (!IsEquals("TestPlayerListDeserialize", 13, p1.getPlayerChipCount())) {
+		return 1;
+	}
+
+	player_list.nextPlayer();
+
+	Player p2 = player_list.getCurrentPlayer();
+
+	if (!IsEquals("TestPlayerListDeserialize", "Jane Doe", p2.getPlayerName())) {
+		return 1;
+	}
+	if (!IsEquals("TestPlayerListDeserialize", 24, p2.getGamesWon())) {
+		return 1;
+	}
+	if (!IsEquals("TestPlayerListDeserialize", 31, p2.getPlayerChipCount())) {
+		return 1;
 	}
 
 	return 0;

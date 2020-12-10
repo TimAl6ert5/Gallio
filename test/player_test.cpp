@@ -8,15 +8,17 @@
 #include "player_test.h"
 
 int PlayerTest::Run() {
-	int result = 0;
+	int test_result = TEST_PASS;
 
-	result += TestPlayerSerialize();
-	result += TestPlayerDeserialize();
+	test_result += TestPlayerSerialize();
+	test_result += TestPlayerDeserialize();
 
-	return result;
+	return test_result;
 }
 
 int PlayerTest::TestPlayerSerialize() {
+	int test_result = TEST_PASS;
+
 	Player p1("John Doe");
 	p1.SetGamesWon(42);
 
@@ -25,24 +27,27 @@ int PlayerTest::TestPlayerSerialize() {
 	p1.Serialize(actual);
 
 	if (!IsEquals("TestPlayerSerialize", expected, actual)) {
-		return 1;
+		test_result = TEST_FAIL;
 	}
-	return 0;
+	
+	return test_result;
 }
 
 int PlayerTest::TestPlayerDeserialize() {
+	int test_result = TEST_PASS;
+
 	std::string serialized_player = "John Doe\t42";
 	Player p1("");
 
 	p1.Deserialize(serialized_player);
 
 	if (!IsEquals("TestPlayerDeserialize", "John Doe", p1.GetPlayerName())) {
-		return 1;
+		test_result = TEST_FAIL;
 	}
 
 	if (!IsEquals("TestPlayerDeserialize", 42, p1.GetGamesWon())) {
-		return 1;
+		test_result = TEST_FAIL;
 	}
 
-	return 0;
+	return test_result;
 }

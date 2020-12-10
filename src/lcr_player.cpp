@@ -9,7 +9,7 @@
 #include "lcr_player.h"
 
 LcrPlayer::LcrPlayer(Player& player)
-	: player_(player)
+	: player_(player), chip_count_(3)
 {}
 
 Player& LcrPlayer::GetPlayer() {

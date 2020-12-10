@@ -11,6 +11,7 @@
 #include <iostream>
 #include <string>
 #include <sstream>
+#include "test_config.h"
 
 /*
 * A naive implementation of a simple testing framework to standardize test

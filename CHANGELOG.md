@@ -7,6 +7,7 @@
 - Implemented a 'game room' menu interface
 - Can add / remove players
 - Can play multiple games in one session.
+- Add test configuration and better standardization
 
 ### Remove
 

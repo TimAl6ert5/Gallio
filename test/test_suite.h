@@ -8,6 +8,7 @@
 #ifndef TEST_SUITE_H
 #define TEST_SUITE_H
 
+#include "test_config.h"
 #include "player_test.h"
 #include "lcr_players_list_test.h"
 

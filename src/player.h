@@ -22,7 +22,7 @@ public:
 	std::string GetPlayerName() const;
 
 	void IncrementGamesWon();
-	void SetGamesWon(const int won);
+	void SetGamesWon(const unsigned int won);
 	unsigned int GetGamesWon() const;
 
 	void Serialize(std::string& store_string) const;

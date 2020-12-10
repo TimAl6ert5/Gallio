@@ -29,7 +29,7 @@ void Player::IncrementGamesWon() {
 	games_won_++;
 }
 
-void Player::SetGamesWon(const int won) {
+void Player::SetGamesWon(const unsigned int won) {
 	games_won_ = won;
 }
 

@@ -9,16 +9,15 @@
 #define TEST_SUITE_H
 
 #include "player_test.h"
-#include "players_list_test.h"
+#include "lcr_players_list_test.h"
 
-class TestSuite
-{
-public:
+class TestSuite {
+ public:
 	int Run();
 
-private:
-	PlayerTest player_test;
-	PlayersListTest players_list_test;
+ private:
+	PlayerTest player_test_;
+	LcrPlayersListTest players_list_test_;
 };
 
 #endif // TEST_SUITE_H

@@ -5,20 +5,20 @@
 * Project: Module 7-1
 */
 
-#include "dice_lcr.h"
+#include "lcr_dice.h"
 
-DiceLCR::DiceLCR() 
+LcrDice::LcrDice() 
 	: allowed_dice_(MAX_DICE)
 {}
 
-void DiceLCR::RollDice(int player_chip_count) {
+void LcrDice::RollDice(int player_chip_count) {
 	allowed_dice_ = std::min(player_chip_count, MAX_DICE);
 	for (auto& dice: game_dice_) {
 		dice.Roll();
 	}
 }
 
-int DiceLCR::CountL() const {
+int LcrDice::CountL() const {
 	int countL = 0;
 	for (int i = 0; i < allowed_dice_; i++) {
 		if (game_dice_[i].GetValue() == 1) {
@@ -28,7 +28,7 @@ int DiceLCR::CountL() const {
 	return countL;
 }
 
-int DiceLCR::CountR() const {
+int LcrDice::CountR() const {
 	int countR = 0;
 	for (int i = 0; i < allowed_dice_; i++) {
 		if (game_dice_[i].GetValue() == 2) {
@@ -38,7 +38,7 @@ int DiceLCR::CountR() const {
 	return countR;
 }
 
-int DiceLCR::CountC() const {
+int LcrDice::CountC() const {
 	int countC = 0;
 	for (int i = 0; i < allowed_dice_; i++) {
 		if (game_dice_[i].GetValue() == 3) {
@@ -48,7 +48,7 @@ int DiceLCR::CountC() const {
 	return countC;
 }
 
-int DiceLCR::CountStar() const {
+int LcrDice::CountStar() const {
 	int countS = 0;
 	for (int i = 0; i < allowed_dice_; i++) {
 		if (game_dice_[i].GetValue() >= 4 && game_dice_[i].GetValue() <= 6) {

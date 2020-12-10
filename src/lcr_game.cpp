@@ -5,17 +5,17 @@
 * Project: Module 7-1
 */
 
-#include "game_lcr.h"
+#include "lcr_game.h"
 
-GameLCR::GameLCR()
+LcrGame::LcrGame()
 	: center_chips_(0), turns_(0)
 {}
 
-string GameLCR::GetTitle() const {
+std::string LcrGame::GetGameTitle() {
 	return title_;
 }
 
-string GameLCR::GetRules() {
+std::string LcrGame::GetGameRules() {
 	if (rules_.size() < 1) {
 		std::ifstream ifs("rules_lcr.txt");
 		rules_.assign((std::istreambuf_iterator<char>(ifs)),
@@ -24,29 +24,45 @@ string GameLCR::GetRules() {
 	return rules_;
 }
 
-const string GameLCR::title_{ "Left-Center-Right (LCR)" };
+const std::string LcrGame::title_{ "Left-Center-Right (LCR)" };
 
-Player& GameLCR::PlayGame(PlayersList& playersList) {
-	game_ui_.ShowGameStart(playersList);
+Player& LcrGame::PlayGame(std::set<Player>& players) {
 
-	while (playersList.CountPlayersWithChips() > 1) {
+	// Setup a new game
+	LcrPlayersList lcr_players;
+	for (std::set<Player>::iterator iter = players.begin(); iter != players.end(); ++iter) {
+		Player p = *iter;
+		LcrPlayer lcr_player(p);
+		lcr_player.SetPlayerChipCount(3);
+		lcr_players.AddPlayer(lcr_player);
+	}
+	center_chips_ = 0;
+	turns_ = 0;
+
+	// Show ready state
+	game_ui_.ShowGameStart(lcr_players);
+
+	// Play game rounds
+	while (lcr_players.CountPlayersWithChips() > 1) {
 		++turns_;
-		game_ui_.ShowGameRound(turns_, ((turns_ - 1) / playersList.GetNumberOfPlayers()) + 1);
+		game_ui_.ShowGameRound(turns_, ((turns_ - 1) / lcr_players.GetNumberOfPlayers()) + 1);
 
-		TakeTurn(playersList);
+		TakeTurn(lcr_players);
 
-		playersList.NextPlayer();
+		lcr_players.NextPlayer();
 	}
 
 	// Return the last player that still has chips
-	return playersList.GetPlayerWithChips();
+	LcrPlayer winner = lcr_players.GetPlayerWithChips();
+	game_ui_.ShowWinner(winner, turns_);
+	return winner.GetPlayer();
 }
 
-void GameLCR::TakeTurn(PlayersList& playersList) {
+void LcrGame::TakeTurn(LcrPlayersList& playersList) {
 
-	Player& currentPlayer = playersList.GetCurrentPlayer();
-	Player& leftPlayer = playersList.GetPlayerToLeft();
-	Player& rightPlayer = playersList.GetPlayerToRight();
+	LcrPlayer& currentPlayer = playersList.GetCurrentPlayer();
+	LcrPlayer& leftPlayer = playersList.GetPlayerToLeft();
+	LcrPlayer& rightPlayer = playersList.GetPlayerToRight();
 	int currentChipCount = currentPlayer.GetPlayerChipCount();
 
 	game_dice_.RollDice(currentPlayer.GetPlayerChipCount());

@@ -13,20 +13,13 @@
 #include <vector>
 #include "serializable.h"
 
-using namespace std;
-
 class Player : public Serializable {
 public:
 	Player();
-	Player(string name);
+	Player(std::string name);
 
-	void SetPlayerName(string name);
-	string GetPlayerName() const;
-	void SetPlayerChipCount(const int chips);
-	int GetPlayerChipCount() const;
-
-	void AddOneChip();
-	void RemoveOneChip();
+	void SetPlayerName(std::string name);
+	std::string GetPlayerName() const;
 
 	void IncrementGamesWon();
 	void SetGamesWon(const int won);
@@ -35,9 +28,11 @@ public:
 	void Serialize(std::string& store_string) const;
 	bool Deserialize(std::string& store_string);
 
+	bool operator <(const Player& other) const;
+	bool operator ==(const Player& other) const;
+
 private:
-	string name_;
-	int chip_count_;
+	std::string name_;
 	unsigned int games_won_;
 
 };

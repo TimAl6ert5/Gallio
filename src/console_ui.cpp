@@ -42,3 +42,33 @@ bool ConsoleUI::ReadUserInteger(int& user_int, bool (*ValidValue)(int)) const {
 	} catch (...) {}
 	return false;
 }
+
+/*
+* Read a string from console input and use the function to validate the value.
+*
+* @param user_string reference location to store a valid value
+* @param ValidValue function to validate the value
+* @return True if the user input a valid value
+*/
+bool ConsoleUI::ReadUserString(std::string& user_string, bool (*ValidValue)(std::string&)) const {
+	std::string user_input;
+
+	// TODO figure out how to read a line with spaces in it
+	std::cin >> user_input;
+
+	try {
+		if (ValidValue(user_input)) {
+			user_string.assign(user_input);
+			return true;
+		}
+	}
+	catch (...) {}
+	return false;
+}
+
+void ConsoleUI::ShowHorizontalLine() const {
+	for (unsigned int i = 0; i < kConsoleWidth_; i++) {
+		std::cout << kHorizontalLineChar;
+	}
+	std::cout << std::endl;
+}

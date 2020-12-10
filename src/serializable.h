@@ -11,7 +11,7 @@
 #include <string>
 
 class Serializable {
-public:
+ public:
 	/* Convert the object state to a string. */
 	virtual void Serialize(std::string&) const = 0;
 	/* Restore the object state from a string. Return flag indicating success (True). */

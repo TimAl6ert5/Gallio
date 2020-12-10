@@ -12,19 +12,17 @@
 
 #include <cstdlib>
 
-using namespace std;
-
 /*
 * Represents a 6 sided dice with values 1...6
 */
 class Dice {
-public:
+ public:
 	Dice();
 
 	unsigned int Roll();
 	unsigned int GetValue() const;
 
-private:
+ private:
 	unsigned int current_roll_;
 
 };

@@ -5,29 +5,29 @@
 * Project: Module 7-1
 */
 
-#include "players_list.h"
+#include "lcr_players_list.h"
 
-PlayersList::PlayersList() 
+LcrPlayersList::LcrPlayersList() 
 	: players_({})
 {}
 
-void PlayersList::AddPlayer(Player player) {
+void LcrPlayersList::AddPlayer(LcrPlayer player) {
 	players_.push_back(player);
 }
 
-Player& PlayersList::GetCurrentPlayer() {
+LcrPlayer& LcrPlayersList::GetCurrentPlayer() {
 	return players_.at(current_player_index_);
 }
 
-void PlayersList::NextPlayer() {
+void LcrPlayersList::NextPlayer() {
 	current_player_index_ = (current_player_index_ + 1) % players_.size();
 }
 
-unsigned int PlayersList::GetNumberOfPlayers() const {
+unsigned int LcrPlayersList::GetNumberOfPlayers() const {
 	return players_.size();
 }
 
-Player& PlayersList::GetPlayerToRight() {
+LcrPlayer& LcrPlayersList::GetPlayerToRight() {
 	if (current_player_index_ == 0) {
 		return players_[players_.size() - 1];
 	}
@@ -36,7 +36,7 @@ Player& PlayersList::GetPlayerToRight() {
 	}
 }
 
-Player& PlayersList::GetPlayerToLeft() {
+LcrPlayer& LcrPlayersList::GetPlayerToLeft() {
 	if (current_player_index_ == (players_.size() - 1)) {
 		return players_[0];
 	}
@@ -45,7 +45,7 @@ Player& PlayersList::GetPlayerToLeft() {
 	}
 }
 
-unsigned int PlayersList::CountPlayersWithChips() const {
+unsigned int LcrPlayersList::CountPlayersWithChips() const {
 	int count = 0;
 	for (auto& player : players_) {
 		if (player.GetPlayerChipCount() > 0) {
@@ -55,34 +55,11 @@ unsigned int PlayersList::CountPlayersWithChips() const {
 	return count;
 }
 
-Player& PlayersList::GetPlayerWithChips() {
+LcrPlayer& LcrPlayersList::GetPlayerWithChips() {
 	for (auto& player : players_) {
 		if (player.GetPlayerChipCount() > 0) {
 			return player;
 		}
 	}
 	throw -1;
-}
-
-void PlayersList::Serialize(std::string& store_string) const {
-	string temp;
-	for (Player p : players_) {
-		p.Serialize(temp);
-		temp += "\n";
-	}
-	store_string += temp;
-}
-
-bool PlayersList::Deserialize(std::string& store_string) {
-	stringstream ss;
-	ss.str(store_string);
-	string buffer;
-
-	while (getline(ss, buffer, '\n')) {
-		Player player("");
-		player.Deserialize(buffer);
-		AddPlayer(player);
-	}
-
-	return false;
 }

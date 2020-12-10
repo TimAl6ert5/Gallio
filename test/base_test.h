@@ -17,7 +17,7 @@
 * output and provide resusable comparison test functions.
 */
 class BaseTest {
-protected:
+ protected:
 	void LogInfo(std::string message);
 	void LogError(std::string message);
 

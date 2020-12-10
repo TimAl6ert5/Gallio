@@ -19,10 +19,9 @@ int PlayerTest::Run() {
 int PlayerTest::TestPlayerSerialize() {
 	Player p1("John Doe");
 	p1.SetGamesWon(42);
-	p1.SetPlayerChipCount(5);
 
-	string expected = "John Doe\t42\t5";
-	string actual;
+	std::string expected = "John Doe\t42";
+	std::string actual;
 	p1.Serialize(actual);
 
 	if (!IsEquals("TestPlayerSerialize", expected, actual)) {
@@ -32,7 +31,7 @@ int PlayerTest::TestPlayerSerialize() {
 }
 
 int PlayerTest::TestPlayerDeserialize() {
-	string serialized_player = "John Doe\t42\t5";
+	std::string serialized_player = "John Doe\t42";
 	Player p1("");
 
 	p1.Deserialize(serialized_player);
@@ -42,10 +41,6 @@ int PlayerTest::TestPlayerDeserialize() {
 	}
 
 	if (!IsEquals("TestPlayerDeserialize", 42, p1.GetGamesWon())) {
-		return 1;
-	}
-
-	if (!IsEquals("TestPlayerDeserialize", 5, p1.GetPlayerChipCount())) {
 		return 1;
 	}
 

@@ -12,10 +12,10 @@
 #include "../src/player.h"
 
 class PlayerTest : public BaseTest {
-public:
+ public:
 	int Run();
 
-private:
+ private:
 	int TestPlayerSerialize();
 	int TestPlayerDeserialize();
 

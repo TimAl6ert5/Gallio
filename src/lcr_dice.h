@@ -5,8 +5,8 @@
 * Project: Module 7-1
 */
 
-#ifndef DICE_LCR_H_
-#define DICE_LCR_H_
+#ifndef LCR_DICE_H_
+#define LCR_DICE_H_
 
 #define MAX_DICE 3
 
@@ -20,9 +20,9 @@ enum class DiceValue {
 	Star // ... 4,5,6
 };
 
-class DiceLCR {
-public:
-	DiceLCR();
+class LcrDice {
+ public:
+	LcrDice();
 
 	void RollDice(int player_chip_count);
 	int CountL() const;
@@ -30,9 +30,10 @@ public:
 	int CountC() const;
 	int CountStar() const;
 
-private:
+ private:
 	Dice game_dice_[MAX_DICE];
 	int allowed_dice_;
+
 };
 
-#endif // DICE_LCR_H_
+#endif // LCR_DICE_H_

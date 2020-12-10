@@ -7,10 +7,12 @@
 
 //#define TEST_SUITE
 
+#include <iostream>
+
 #ifdef TEST_SUITE
-#include "test\test_suite.h"
+#include "..\test\test_suite.h"
 #else
-#include "src\application.h"
+#include "game_gallery.h"
 #endif // TEST_SUITE
 
 int main() {
@@ -21,8 +23,11 @@ int main() {
 	return tests.Run();
 
 #else
-	Application app;
-	return app.Run();
+	// Init the mighty randomizer
+	srand((unsigned int)time(NULL));
+
+	GameGallery game_gallery;
+	return game_gallery.MainGallery();
 
 #endif // TEST_SUITE
 }

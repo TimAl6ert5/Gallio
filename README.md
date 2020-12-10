@@ -8,11 +8,13 @@ Following are enhancements to be implemented in no particular order.
 
 - [ ] Represent dice face as enum, rather than assume meaning for values 1, 2, 3... everywhere
 - [ ] Implement 'game referee' that observes players chips to determine winner
-- [ ] Prevent users with the same name entering the game
+- [x] Prevent users with the same name entering the game
 - [x] make sure the minimum players is 3
 - [ ] encapsulate game statistics for reporting
-- [ ] allow multiple games to be played
-- [ ] Save game state between sessions (i.e. players)
+- [x] allow multiple games to be played
+- [x] Save players data on exit
+- [ ] Load players data on startup
+- [x] Implement 'main menu' that allows add/remove/view players
 - [ ] Handle user names with spaces (i.e. first last names)
 
 
@@ -28,11 +30,14 @@ FUNCTION TakeTurn:
 	Roll Dice
 	FOR each dice rolled, take action
 		CASE 'L'
-			move chip to player on left
+			remove chip from current player
+			add chip to player on left
 		CASE 'C'
-			move chip to the center
+			remove chip from current player
+			add chip to the center
 		CASE 'R'
-			move chip to player on right
+			remove chip from current player
+			add chip to player on right
 		DEFAULT
 			no action
 

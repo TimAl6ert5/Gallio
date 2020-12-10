@@ -5,14 +5,14 @@
 * Project: Module 7-1
 */
 
-#ifndef PLAYERS_LIST_TEST_H_
-#define PLAYERS_LIST_TEST_H_
+#ifndef LCR_PLAYERS_LIST_TEST_H_
+#define LCR_PLAYERS_LIST_TEST_H_
 
 #include "base_test.h"
-#include "..\src\players_list.h"
+#include "..\src\lcr_players_list.h"
 #include "..\src\player.h"
 
-class PlayersListTest : public BaseTest {
+class LcrPlayersListTest : public BaseTest {
 public:
 	int Run();
 
@@ -21,9 +21,7 @@ private:
 	int TestGetPlayerToRight();
 	int TestCountPlayersWithChips();
 	int TestGetPlayerWithChips();
-	int TestPlayerListSerialize();
-	int TestPlayerListDeserialize();
 
 };
 
-#endif // PLAYERS_LIST_TEST_H_
+#endif // LCR_PLAYERS_LIST_TEST_H_

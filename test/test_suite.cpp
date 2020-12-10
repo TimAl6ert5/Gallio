@@ -10,8 +10,8 @@
 int TestSuite::Run() {
 	int test_result = 0;
 
-	test_result += player_test.Run();
-	test_result += players_list_test.Run();
+	test_result += player_test_.Run();
+	test_result += players_list_test_.Run();
 
 	return test_result;
 }

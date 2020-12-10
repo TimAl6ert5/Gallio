@@ -18,12 +18,19 @@
 #endif
 
 class ConsoleUI {
-public:
+ public:
 	void Clear() const;
 	void ShowMessageFragment(const std::string& msg) const;
 	void ShowMessageLine(const std::string& msg) const;
 
 	bool ReadUserInteger(int& user_int, bool (*ValidValue)(int)) const;
+	bool ReadUserString(std::string& user_string, bool (*ValidValue)(std::string&)) const;
+
+	void ShowHorizontalLine() const;
+
+ private:
+	const unsigned int kConsoleWidth_ = 80;
+	const char kHorizontalLineChar = '=';
 
 };
 

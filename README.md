@@ -13,9 +13,11 @@ Following are enhancements to be implemented in no particular order.
 - [ ] encapsulate game statistics for reporting
 - [x] allow multiple games to be played
 - [x] Save players data on exit
-- [ ] Load players data on startup
+- [x] Load players data on startup
 - [x] Implement 'main menu' that allows add/remove/view players
 - [ ] Handle user names with spaces (i.e. first last names)
+- [ ] Implement game 'Farkle'
+- [ ] Implement game 'Liars Dice'
 
 
 ## Pseudocode

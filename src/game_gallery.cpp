@@ -7,7 +7,10 @@
 
 #include "game_gallery.h"
 
+const std::string GameGallery::kSaveGameFilename = "save_game.txt";
+
 int GameGallery::MainGallery() {
+	RestoreSession();
 	bool exit = false;
 
 	while (!exit) {
@@ -36,7 +39,23 @@ int GameGallery::MainGallery() {
 		}
 	}
 
+	SaveSession();
+
 	return 0;
+}
+
+void GameGallery::Serialize(std::string& store_string) const {
+	std::string s_buffer;
+	for (Player p : game_players_) {
+		p.Serialize(s_buffer);
+		s_buffer += "\n";
+		store_string += s_buffer;
+		s_buffer.clear();
+	}
+}
+
+bool GameGallery::Deserialize(std::string& store_string) {
+	return false;
 }
 
 void GameGallery::ActionPlayerAdd() {
@@ -69,4 +88,34 @@ void GameGallery::ActionGameLCR() {
 
 	Player& winner = lcr_game_.PlayGame(game_players_);
 	winner.IncrementGamesWon();
+}
+
+void GameGallery::SaveSession() const {
+	std::string save_buffer;
+
+	std::ofstream save_file(kSaveGameFilename, std::ios::out | std::ios::trunc);
+	if (!save_file) {
+		std::cerr << "[ERROR] Save game failed." << std::endl;
+		return; // TODO ensure file is closed
+	}
+
+	Serialize(save_buffer);
+	save_file << save_buffer;
+
+	save_file.close();
+}
+
+void GameGallery::RestoreSession() {
+	std::ifstream save_file{ kSaveGameFilename };
+	if (save_file.is_open()) {
+
+		std::string read_buf;
+		while (std::getline(save_file, read_buf)) {
+			Player p;
+			p.Deserialize(read_buf);
+			game_players_.emplace(p);
+		}
+
+		save_file.close();
+	}
 }

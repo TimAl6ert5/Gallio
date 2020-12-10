@@ -8,6 +8,7 @@
 - Can add / remove players
 - Can play multiple games in one session.
 - Add test configuration and better standardization
+- Players information is persistent across sessions.
 
 ### Remove
 
@@ -19,7 +20,7 @@
 
 - Player name does not support whitespace.
 - Terminal input does not handle invalid input.
-- Player win stat not incrementing correctly
+- Player games won stat not incrementing correctly
 
 
 ## [0.0.1] - 2020-12-06

@@ -6,18 +6,13 @@ Implementation of the dice game Left-Center-Right (LCR) as a command line game.
 
 Following are enhancements to be implemented in no particular order.
 
-- [ ] Represent dice face as enum, rather than assume meaning for values 1, 2, 3... everywhere
-- [ ] Implement 'game referee' that observes players chips to determine winner
-- [x] Prevent users with the same name entering the game
-- [x] make sure the minimum players is 3
-- [ ] encapsulate game statistics for reporting
-- [x] allow multiple games to be played
-- [x] Save players data on exit
-- [x] Load players data on startup
-- [x] Implement 'main menu' that allows add/remove/view players
-- [ ] Handle user names with spaces (i.e. first last names)
-- [ ] Implement game 'Farkle'
-- [ ] Implement game 'Liars Dice'
+- Represent dice face as enum, rather than assume meaning for values 1, 2, 3... everywhere
+- Implement 'game referee' that observes players chips to determine winner
+- Encapsulate game statistics for reporting per game. (i.e. LCR number of players, number of rounds...)
+- Handle user names with spaces (i.e. first last names)
+- Implement game 'Farkle'
+- Implement game 'Liars Dice'
+- Report players chip counts at the end of each round in LCR game.
 
 
 ## Pseudocode

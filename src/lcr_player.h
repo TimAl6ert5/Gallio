@@ -8,13 +8,14 @@
 #ifndef LCR_PLAYER_H_
 #define LCR_PLAYER_H_
 
+#include <string>
 #include "player.h"
 
 class LcrPlayer {
  public:
-	LcrPlayer(Player& player);
+	LcrPlayer(const Player* player);
 
-	Player& GetPlayer();
+	const Player* GetPlayer();
 	std::string GetPlayerName() const;
 
 	void SetPlayerChipCount(const int chips);
@@ -24,7 +25,7 @@ class LcrPlayer {
 	void RemoveOneChip();
 
  private:
-	Player player_;
+	const Player* player_;
 	int chip_count_;
 
 };

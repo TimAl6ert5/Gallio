@@ -16,7 +16,7 @@ class Game {
  public:
 	virtual std::string GetGameTitle() = 0;
 	virtual std::string GetGameRules() = 0;
-	virtual Player& PlayGame(std::set<Player> &players) = 0;
+	virtual const Player* PlayGame(std::set<Player> &players) = 0;
 };
 
 #endif // GAME_H_

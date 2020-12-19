@@ -24,7 +24,7 @@ class LcrGame : public Game {
 
 	std::string GetGameTitle();
 	std::string GetGameRules();
-	Player& PlayGame(std::set<Player>& players);
+	const Player* PlayGame(std::set<Player>& players);
 
 	static const int kMinPlayers = 3; // must have 3, no upper bound
 

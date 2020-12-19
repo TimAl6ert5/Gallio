@@ -20,8 +20,6 @@
 
 - Player name does not support whitespace.
 - Terminal input does not handle invalid input.
-- Player games won stat not incrementing correctly
-
 
 ## [0.0.1] - 2020-12-06
 Initial implementation.

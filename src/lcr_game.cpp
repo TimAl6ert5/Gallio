@@ -26,12 +26,12 @@ std::string LcrGame::GetGameRules() {
 
 const std::string LcrGame::title_{ "Left-Center-Right (LCR)" };
 
-Player& LcrGame::PlayGame(std::set<Player>& players) {
+const Player* LcrGame::PlayGame(std::set<Player>& players) {
 
 	// Setup a new game
 	LcrPlayersList lcr_players;
 	for (std::set<Player>::iterator iter = players.begin(); iter != players.end(); ++iter) {
-		Player p = *iter;
+		const Player* p = &(*iter);
 		LcrPlayer lcr_player(p);
 		lcr_player.SetPlayerChipCount(3);
 		lcr_players.AddPlayer(lcr_player);

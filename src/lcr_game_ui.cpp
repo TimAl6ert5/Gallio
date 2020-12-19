@@ -69,7 +69,7 @@ void LcrGameUi::ShowChipCenter(LcrPlayer& currentPlayer, int center_chip_count, 
 }
 
 void LcrGameUi::ShowWinner(LcrPlayer& winningPlayer, int turns) {
-	std::cout << "Player " << winningPlayer.GetPlayerName() << " win the game in "
+	std::cout << "Player " << winningPlayer.GetPlayerName() << " wins the game in "
 		<< turns << " rounds with " << winningPlayer.GetPlayerChipCount() 
 		<< " chips left.\nCongratulations!" << std::endl;
 }

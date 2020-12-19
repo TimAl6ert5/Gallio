@@ -86,8 +86,14 @@ void GameGallery::ActionGameLCR() {
 		return;
 	}
 
-	Player& winner = lcr_game_.PlayGame(game_players_);
-	winner.IncrementGamesWon();
+	const Player* winner_ptr = lcr_game_.PlayGame(game_players_);
+	Player winner = *winner_ptr;
+	std::set<Player>::iterator winner_it = game_players_.find(winner);
+	if (winner_it != game_players_.end()) {
+		game_players_.erase(winner_it);
+		winner.IncrementGamesWon();
+		game_players_.emplace(winner);
+	}
 }
 
 void GameGallery::SaveSession() const {

@@ -21,7 +21,6 @@ private:
 	int TestGetPlayerToRight();
 	int TestCountPlayersWithChips();
 	int TestGetPlayerWithChips();
-	int TestPlayerReference();
 
 };
 

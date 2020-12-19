@@ -5,19 +5,18 @@
 * Project: Module 7-1
 */
 
-#include <string>
 #include "lcr_player.h"
 
-LcrPlayer::LcrPlayer(Player& player)
+LcrPlayer::LcrPlayer(const Player* player)
 	: player_(player), chip_count_(3)
 {}
 
-Player& LcrPlayer::GetPlayer() {
+const Player* LcrPlayer::GetPlayer() {
 	return player_;
 }
 
 std::string LcrPlayer::GetPlayerName() const {
-	return player_.GetPlayerName();
+	return player_->GetPlayerName();
 }
 
 void LcrPlayer::SetPlayerChipCount(const int chips) {
